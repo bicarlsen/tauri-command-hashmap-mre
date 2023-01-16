@@ -27,7 +27,10 @@ pub fn app() -> Html {
                 let mut map = HashMap::new();
                 map.insert(0, 1);
 
-                invoke("test", to_value(&TestArgs { map }).unwrap()).await;
+                let map_value = to_value(&TestArgs { map }).unwrap();
+                web_sys::console::log_1(&map_value);
+
+                invoke("test", map_value).await;
             });
 
             || {}
